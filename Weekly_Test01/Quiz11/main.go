@@ -19,13 +19,12 @@ func sliceFruits(fruits1 []string, fruits2 []string, operationType int) []string
 	var result []string
 	mapFruits := make(map[string]bool)
 
-	// Mengisi map dengan elemen-elemen dari fruits1
 	for _, fruit := range fruits1 {
 		mapFruits[fruit] = true
 	}
 
 	switch operationType {
-	case 1: // Menemukan elemen yang sama
+	case 1:
 		for _, fruit := range fruits2 {
 			if mapFruits[fruit] {
 				result = append(result, fruit)
@@ -58,28 +57,8 @@ func sliceFruits(fruits1 []string, fruits2 []string, operationType int) []string
 			}
 		}
 		return result
-		// resultNotSort := append(result, unionAB...)
-		// sort.Strings(resultNotSort)
-		// result = removeDuplicate(resultNotSort)
+
 	}
 
 	return result
 }
-
-// func removeDuplicate(words []string) []string {
-// 	var result []string
-// 	for index, value := range words {
-// 		same := false
-// 		for i := 0; i < len(result); i++ {
-// 			if value == result[i] {
-// 				same = true
-// 				break
-// 			}
-// 		}
-// 		if !same {
-// 			result = append(result, words[index])
-// 		}
-// 	}
-
-// 	return result
-// }
