@@ -38,7 +38,6 @@ func sliceOperation(nums1 []int, nums2 []int, typeOperation int) []int {
 			}
 			result = hasil
 		}
-		return result
 	case 2:
 		hasil := []int{}
 		for _, v := range nums2 {
@@ -54,7 +53,6 @@ func sliceOperation(nums1 []int, nums2 []int, typeOperation int) []int {
 			}
 			result = hasil
 		}
-		return result
 	case 3:
 		var unionAB []int
 		unionAB = append(unionAB, nums1...)
@@ -77,7 +75,6 @@ func sliceOperation(nums1 []int, nums2 []int, typeOperation int) []int {
 			}
 			result = hasil
 		}
-		return result
 	}
 	return result
 
