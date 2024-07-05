@@ -4,8 +4,11 @@ import "fmt"
 
 func main() {
 	words := "bananas"
+	words2 := "lalamama"
 	result := removeDuplicateLetter(words)
 	fmt.Printf("%s\n", result)
+	result2 := removeDuplicateLetter(words2)
+	fmt.Printf("%s\n", result2)
 }
 
 func removeDuplicateLetter(words string) string {
