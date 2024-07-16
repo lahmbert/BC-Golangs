@@ -29,7 +29,6 @@ func SalaryRandomizer() float64 {
 
 func ShowAllEmployee(employee []models.ChildInterface) {
 	for _, v := range employee {
-		fmt.Println("-----------------------------------------")
 		fmt.Printf("fullName = %s\n", v.GetfullName())
 		fmt.Printf("salary = %.2f\n", v.GetSalary())
 		fmt.Printf("status = %s\n", v.GetStatus())
@@ -37,7 +36,6 @@ func ShowAllEmployee(employee []models.ChildInterface) {
 		fmt.Printf("overtime = %.2f\n", v.GetOvertime())
 		fmt.Printf("allowance = %.2f\n", v.GetAllowance())
 		fmt.Printf("totalSalary = %.2f\n", v.GetTotalSalary())
-		fmt.Println("-----------------------------------------")
 	}
 
 }
@@ -69,7 +67,6 @@ func GenerateEmployeesWithChannel(empCount int) []models.ChildInterface {
 
 		}(names[nameRandomizer], SalaryRandomizer(), statuses[rand.Intn(len(statuses))]) //argument = (random name dari slice names, salary Randomizer, random status dari statuses)
 
-		//Masukkan data pada employeeChannel ke slice
 		employees = append(employees, <-employeeChannel)
 	}
 
