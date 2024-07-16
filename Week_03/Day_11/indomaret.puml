@@ -1,0 +1,108 @@
+@startuml toko_indomaret
+
+entity customers {
+    *customers_id : SERIAL <<pk>>
+    --
+    first_name: VARCHAR (50)
+    last_name: VARCHAR (50)
+    address : VARCHAR (60)
+    phone : VARCHAR (20)
+    postal_code : VARCHAR (20)
+    --
+    city_id : SERIAL <<fk>>
+}
+
+entity city {
+    *city_id : SERIAL <<pk>>
+    --
+    city_name : VARCHAR (20)
+    --
+    region_id : SERIAL <<fk>>
+}
+
+entity region {
+    *region_id : SERIAL <<pk>>
+    --
+    region_name : VARCHAR (20)
+    --
+    country_id : SERIAL <<fk>>
+}
+
+entity country {
+    *country_id : SERIAL <<pk>>
+    --
+    country_name : VARCHAR (20)
+}
+
+
+entity products{
+    *product_id : SERIAL <<pk>>
+    --
+    product_name : varchar(40)
+    quantity_per_unit : varchar(20)
+    unit_price : real
+    units_in_stock : smallint
+    units_in_order : smallint
+    reorder_level : smallint
+    discontinued : integer
+    --
+    seller_id : SERIAL <<fk>>
+    category_id : SERIAL <<fk>>
+}
+
+entity orders{
+    *order_id : SERIAL <<pk>>
+    --
+    order_date : date
+    required_date : date
+    ship_date : date
+    ship_address : varchar(60)
+    postal_code : varchar(10)
+    --
+    city_id : SERIAL <<fk>>
+    employee_id : SERIAL <<fk>>
+    customer_id : SERIAL <<fk>>
+    ship_via : SERIAL <<fk>>
+}
+
+entity seller {
+    seller_id : SERIAL <<pk>>
+    --
+    company_name : varchar(40)
+    contact_name : varchar(30)
+    contact_title : varchar(30)
+    seller_address : varchar(60)
+    seller_postal_code : varchar(10)
+    phone : varchar(24)
+    fax : varchar(24)
+    homepage : text
+    --
+    city_id : SERIAL <<fk>>
+}
+
+entity categories{
+  *category_id : smallint <<pk>>
+  --
+  category_name : varchar(15)
+  description : text
+  picture : byte
+}
+entity shipper {
+    *shipper_id : SERIAL <<pk>>
+    --
+    ship_merhode : varchar(40)
+}
+
+categories ||-o{ products
+seller ||--o{ products
+customers ||-o{ orders
+orders ||--o{ products
+country ||-o{region
+shipper ||-o{orders
+region ||-o{city
+city ||-o{customers
+city ||-o{seller
+city ||-o{orders
+
+
+@enduml

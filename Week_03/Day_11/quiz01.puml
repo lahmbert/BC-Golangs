@@ -1,0 +1,62 @@
+@startuml devweb
+ entity service_order {
+    *service_order_id : SERIAL <<pk>> 
+    --
+    service_order_name : VARCHAR (50)
+    create_on : date
+    service_type_id : SERIAL <<fk>>
+    order_status_id : SERIAL <<fk>>
+    customer_id : SERIAL <<fk>>
+    account_manager_id : SERIAL <<fk>>
+ }
+
+ entity service_type {
+    *service_type_id : SERIAL <<pk>>
+    --
+    service_type_name : VARCHAR (50)
+ }
+
+entity order_status {
+    *order_status_id : SERIAL <<pk>>
+    --
+    order_status_name : VARCHAR (50)
+}
+
+entity customer {
+    *customer_id : SERIAL <<pk>>
+    --
+    customer_name : VARCHAR (50)
+}
+
+entity account_manager {
+    *account_manager_id : SERIAL <<pk>>
+    --
+    account_manager_name : VARCHAR (50)
+}
+
+entity service_order_implementation {
+    *task_id : SERIAL <<pk>>
+    --
+    task_name : VARCHAR (50)
+    start_date : date
+    end_date : date
+    task_status_id : SERIAL <<fk>>
+    service_order_id SERIAL <<fk>>
+}
+
+entity task_status {
+    *task_status_id : SERIAL <<pk>>
+    --
+    task_status_name : VARCHAR (50)
+}
+
+service_type ||-o{service_order
+service_order ||-o{service_order
+customer ||-o{service_order
+account_manager ||-o{service_order
+order_status ||-o{service_order
+service_order ||-o{service_order_implementation
+task_status ||-o{service_order_implementation
+service_order_implementation ||-o{service_order_implementation
+
+@enduml
