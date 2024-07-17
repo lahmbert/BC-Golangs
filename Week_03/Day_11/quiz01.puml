@@ -50,13 +50,13 @@ entity task_status {
     task_status_name : VARCHAR (50)
 }
 
-service_type ||-o{service_order
-service_order ||-o{service_order
-customer ||-o{service_order
-account_manager ||-o{service_order
-order_status ||-o{service_order
-service_order ||-o{service_order_implementation
-task_status ||-o{service_order_implementation
-service_order_implementation ||-o{service_order_implementation
+service_type ||-down-o{service_order
+service_order ||--o{service_order
+customer ||-up-o{service_order
+account_manager ||-right-o{service_order
+order_status ||-up-o{service_order
+service_order ||-down-o{service_order_implementation
+task_status ||-right-o{service_order_implementation
+service_order_implementation ||-down-o{service_order_implementation
 
 @enduml

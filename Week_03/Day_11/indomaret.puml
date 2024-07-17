@@ -62,7 +62,7 @@ entity orders{
     city_id : SERIAL <<fk>>
     employee_id : SERIAL <<fk>>
     customer_id : SERIAL <<fk>>
-    ship_via : SERIAL <<fk>>
+    shipper_id : SERIAL <<fk>>
 }
 
 entity seller {
@@ -93,16 +93,16 @@ entity shipper {
     ship_merhode : varchar(40)
 }
 
-categories ||-o{ products
+categories ||-up-o{ products
 seller ||--o{ products
 customers ||-o{ orders
-orders ||--o{ products
-country ||-o{region
-shipper ||-o{orders
-region ||-o{city
-city ||-o{customers
-city ||-o{seller
-city ||-o{orders
+orders ||-left-o{ products
+country ||--o{region
+shipper ||-up-o{orders
+region ||--o{city
+city ||--o{customers
+city ||--o{seller
+city ||--o{orders
 
 
 @enduml
